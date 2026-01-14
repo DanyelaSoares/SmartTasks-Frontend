@@ -29,7 +29,7 @@ O objetivo é permitir que usuários:
 
 1. Clone este repositório:
   ```bash
-    git clone <URL_DO_REPOSITORIO>
+    git clone <DanyelaSoares/SmartTasks-Frontend>
 ```
 2. Entre na pasta do frontend:
   ```bash
