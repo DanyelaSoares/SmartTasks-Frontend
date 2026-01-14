@@ -1,10 +1,7 @@
+import AppRouter from './app/AppRouter'
+
 function App() {
-  return (
-    <div>
-      <h1>SmartTasks Frontend</h1>
-    </div>
-  )
+  return <AppRouter />
 }
 
 export default App
-
