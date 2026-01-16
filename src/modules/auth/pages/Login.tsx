@@ -1,16 +1,32 @@
-import { useState } from 'react'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { loginUser } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
-  const [email, setEmail] = useState('')
-  const [senha, setSenha] = useState('')
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [error, setError] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-    console.log({
-      email,
-      senha,
-    })
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
+
+    if (!email || !senha) {
+      setError("Informe email e senha");
+      return;
+    }
+
+    try {
+      await loginUser({ email, password: senha });
+      login(email); // 🔐 estado global
+      navigate("/dashboard"); // 🚀 rota protegida
+    } catch (err: any) {
+      setError(err.message || "Erro ao realizar login");
+    }
   }
 
   return (
@@ -19,6 +35,10 @@ export default function Login() {
         <h1 className="text-2xl font-bold text-center mb-4 text-green-600">
           SmartTasks
         </h1>
+
+        {error && (
+          <p className="text-red-500 text-sm mb-3 text-center">{error}</p>
+        )}
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
@@ -49,8 +69,18 @@ export default function Login() {
           >
             Entrar
           </button>
+
+          <p className="text-sm text-center mt-4">
+            Não tem conta?{" "}
+            <Link
+              to="/register"
+              className="text-blue-500 hover:underline font-medium"
+            >
+              Cadastre-se
+            </Link>
+          </p>
         </form>
       </div>
     </div>
-  )
+  );
 }

@@ -1,26 +1,44 @@
 import { createContext, useContext, useState } from "react";
 
+type User = {
+  email: string;
+};
+
 type AuthContextData = {
+  user: User | null;
   isAuthenticated: boolean;
-  login: () => void;
+  login: (email: string) => void;
   logout: () => void;
 };
 
 const AuthContext = createContext<AuthContextData | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem("smarttasks:user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
-  function login() {
-    setIsAuthenticated(true);
+  function login(email: string) {
+    const userData = { email };
+    setUser(userData);
+    localStorage.setItem("smarttasks:user", JSON.stringify(userData));
   }
 
   function logout() {
-    setIsAuthenticated(false);
+    setUser(null);
+    localStorage.removeItem("smarttasks:user");
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated: !!user,
+        login,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
