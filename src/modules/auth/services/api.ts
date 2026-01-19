@@ -1,30 +1,42 @@
-interface RegisterForm {
-  name: string;
-  email: string;
-  password: string;
-}
+import axios from "axios";
+import type { InternalAxiosRequestConfig } from "axios";
 
+const api = axios.create({
+  baseURL: "http://localhost:8080",
+});
+
+// 🔐 Interceptor: injeta token em todas as requisições
+api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  const storedUser = localStorage.getItem("smarttasks:user");
+
+  if (storedUser) {
+    const { token } = JSON.parse(storedUser);
+
+    if (token) {
+      config.headers = config.headers ?? {};
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  }
+
+  return config;
+});
+
+// --------------------
+// TIPOS
+// --------------------
 interface LoginForm {
   email: string;
   password: string;
 }
 
-// REGISTER (mock)
-export async function registerUser(form: RegisterForm) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (form.email === "erro@teste.com") {
-        reject(new Error("Esse e-mail já está em uso"));
-      } else {
-        resolve({ id: 1, ...form });
-      }
-    }, 1000);
-  });
-}
-
-// LOGIN (mock)
+// --------------------
+// AUTH
+// --------------------
 export async function loginUser(form: LoginForm) {
-  return new Promise((resolve, reject) => {
+  return new Promise<{
+    token: string;
+    email: string;
+  }>((resolve, reject) => {
     setTimeout(() => {
       if (
         form.email === "novo123@teste.com" &&
@@ -32,7 +44,7 @@ export async function loginUser(form: LoginForm) {
       ) {
         resolve({
           token: "fake-jwt-token",
-          user: { email: form.email },
+          email: form.email,
         });
       } else {
         reject(new Error("Email ou senha inválidos"));
@@ -40,3 +52,5 @@ export async function loginUser(form: LoginForm) {
     }, 1000);
   });
 }
+
+export default api;

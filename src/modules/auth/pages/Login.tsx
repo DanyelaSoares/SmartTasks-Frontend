@@ -3,13 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 
+type LoginResponse = {
+  token: string;
+  email: string;
+};
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login } = useAuth(); // ✅ hook só aqui no topo
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -21,11 +26,21 @@ export default function Login() {
     }
 
     try {
-      await loginUser({ email, password: senha });
-      login(email); // 🔐 estado global
-      navigate("/dashboard"); // 🚀 rota protegida
-    } catch (err: any) {
-      setError(err.message || "Erro ao realizar login");
+      const response = (await loginUser({
+        email,
+        password: senha,
+      })) as LoginResponse;
+
+      // backend/mock retorna { token, email }
+      login(response.email ?? email, response.token);
+
+      navigate("/dashboard");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Erro ao realizar login");
+      }
     }
   }
 

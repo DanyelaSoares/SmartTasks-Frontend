@@ -1,27 +1,36 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type User = {
   email: string;
+  token: string;
 };
 
 type AuthContextData = {
   user: User | null;
   isAuthenticated: boolean;
-  login: (email: string) => void;
+  login: (email: string, token: string) => void;
   logout: () => void;
 };
 
 const AuthContext = createContext<AuthContextData | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(() => {
-    const storedUser = localStorage.getItem("smarttasks:user");
-    return storedUser ? JSON.parse(storedUser) : null;
-  });
+  const [user, setUser] = useState<User | null>(null);
 
-  function login(email: string) {
-    const userData = { email };
+  // 🔁 Restaura login ao abrir o app
+  useEffect(() => {
+    const storedUser = localStorage.getItem("smarttasks:user");
+
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  function login(email: string, token: string) {
+    const userData: User = { email, token };
+
     setUser(userData);
+
     localStorage.setItem("smarttasks:user", JSON.stringify(userData));
   }
 
