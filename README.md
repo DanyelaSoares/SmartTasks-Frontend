@@ -42,10 +42,26 @@ O backend do projeto está neste repositório separado:
 ```bash
 npm install
 ```
+
 3. Inicie o projeto:
-   
+
 ```bash
 npm run dev
 ```
+
 O frontend estará disponível em:
 👉 http://localhost:5173
+
+## 🔐 Autenticação
+
+A aplicação possui autenticação básica com:
+
+- Login de usuário (mock por enquanto)
+- Armazenamento de token e email no localStorage
+- Estado global de autenticação via React Context
+- Restauração automática da sessão ao recarregar a página
+
+### Credenciais de teste
+
+Email: novo123@teste.com  
+Senha: 41785
