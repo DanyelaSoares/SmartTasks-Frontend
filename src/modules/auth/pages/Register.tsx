@@ -32,7 +32,13 @@ export default function Register() {
         navigate("/");
       }, 1500);
     } catch (err: any) {
-      setError(err.message || "Erro ao cadastrar usuário.");
+      if (err.response?.status === 409) {
+        setError("Email já cadastrado.");
+      } else if (err.response?.status === 400) {
+        setError("Todos os campos são obrigatórios.");
+      } else {
+        setError("Erro ao cadastrar usuário.");
+      }
     }
   };
 

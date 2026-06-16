@@ -64,5 +64,23 @@ export async function registerUser(
 
   return response.data;
 }
+interface Task {
+  id: number;
+  titulo: string;
+  concluida: boolean;
+}
+
+export async function listarTarefas(email: string): Promise<Task[]> {
+  const response = await api.get<Task[]>(`/tasks/user/${email}`);
+  return response.data;
+}
+
+export async function criarTarefa(email: string, titulo: string): Promise<Task> {
+  const response = await api.post<Task>(`/tasks/user/${email}`, {
+    titulo,
+  });
+
+  return response.data;
+}
 
 export default api;
