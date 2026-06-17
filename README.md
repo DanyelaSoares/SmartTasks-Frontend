@@ -19,6 +19,8 @@ O projeto foi concebido para praticar e demonstrar:
 - Estruturação de interfaces
 - Comunicação frontend ↔ backend
 
+---
+
 ## 🚀 Funcionalidades
 
 - Cadastro de usuários
@@ -34,7 +36,7 @@ O projeto foi concebido para praticar e demonstrar:
 
 ---
 
-🛠 Funcionalidades em desenvolvimento
+## 🛠 Funcionalidades em desenvolvimento
 
 - Concluir tarefa
 - Excluir tarefa
@@ -102,6 +104,8 @@ npm run dev
 O frontend estará disponível em:
 👉 http://localhost:5173
 
+---
+
 ## 🔐 Autenticação
 
 A aplicação possui autenticação básica com:
@@ -111,6 +115,8 @@ A aplicação possui autenticação básica com:
 - Estado global de autenticação via React Context
 - Restauração automática da sessão
 - Envio automático do token via interceptor Axios
+
+---
 
 ### Credenciais de teste
 
@@ -135,6 +141,8 @@ Senha: 41785
    - Se não estiver autenticado, ele é redirecionado para a tela de login.
 6. Ao recarregar a página:
    - A aplicação restaura automaticamente a sessão do usuário a partir do `localStorage`.
+
+---
 
 ## 🎯 Escopo do sistema
 
@@ -161,6 +169,8 @@ Senha: 41785
 - Marcação de tarefas como concluídas
 - Filtro e ordenação de tarefas
 - Tratamento global de erros de API
+
+---
 
 ## 🔐 Regras de autenticação e segurança
 
