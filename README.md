@@ -86,6 +86,14 @@ O backend do projeto está neste repositório separado:
 
 ---
 
+## 🗄 Banco de Dados
+
+O script de criação do banco encontra-se em:
+
+database/smarttasks.sql
+
+Esse arquivo contém a estrutura das tabelas utilizadas pela aplicação e pode ser utilizado para recriar o banco MySQL necessário para execução do projeto.
+
 ## ⚡ Como rodar
 
 1. Clone o repositório.
@@ -108,7 +116,7 @@ O frontend estará disponível em:
 
 ## 🔐 Autenticação
 
-A aplicação possui autenticação básica com:
+A aplicação utiliza autenticação baseada em JWT com:
 
 - Autenticação real com JWT
 - Armazenamento de token e email no localStorage
@@ -120,8 +128,7 @@ A aplicação possui autenticação básica com:
 
 ### Credenciais de teste
 
-Email: novo123@teste.com  
-Senha: 41785
+Cadastre um novo usuário pela tela de registro e utilize as credenciais criadas para acessar o sistema.
 
 ## 🧭 Fluxo básico do usuário
 
