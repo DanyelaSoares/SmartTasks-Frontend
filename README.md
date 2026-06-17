@@ -2,12 +2,12 @@
 
 ![Status](https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow?style=for-the-badge)
 
-
 Este repositório contém o **frontend** do projeto **SmartTasks**, um sistema de gerenciamento de tarefas fullstack.
 
 O frontend foi desenvolvido em **React** e consome as APIs do backend em Java Spring Boot.
 
 ---
+
 ## 📐 Visão Funcional
 
 O SmartTasks é um sistema de gerenciamento de tarefas com foco em autenticação, controle de acesso e comunicação com APIs REST.
@@ -18,14 +18,29 @@ O projeto foi concebido para praticar e demonstrar:
 - Regras de acesso e proteção de rotas
 - Estruturação de interfaces
 - Comunicação frontend ↔ backend
-  
+
 ## 🚀 Funcionalidades
 
-- Tela de login e registro de usuários
-- Controle de autenticação global (Context API)
-- Rotas protegidas (dashboard)
-- Interface responsiva com Tailwind CSS
-- Estrutura pronta para gerenciamento de tarefas
+- Cadastro de usuários
+- Login com JWT
+- Persistência de usuários em MySQL
+- Dashboard protegido
+- Controle global de autenticação via React Context
+- Armazenamento seguro do token JWT
+- Interceptor Axios para envio automático do token
+- Criação de tarefas
+- Listagem de tarefas por usuário autenticado
+- Restauração automática da sessão
+
+---
+
+🛠 Funcionalidades em desenvolvimento
+
+- Concluir tarefa
+- Excluir tarefa
+- Edição de tarefas
+- Melhorias visuais
+- Casos de teste Postman
 
 ---
 
@@ -37,6 +52,28 @@ O projeto foi concebido para praticar e demonstrar:
 - Tailwind CSS
 - React Router
 - Axios
+
+---
+
+## 🛠 Arquitetura
+
+Frontend:
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Axios
+- React Router
+
+Backend:
+
+- Java 21
+- Spring Boot 4
+- Spring Security
+- JWT
+- JPA/Hibernate
+- MySQL
 
 ---
 
@@ -69,10 +106,11 @@ O frontend estará disponível em:
 
 A aplicação possui autenticação básica com:
 
-- Fluxo de autenticação simulado (mock), em preparação para integração com backend
+- Autenticação real com JWT
 - Armazenamento de token e email no localStorage
 - Estado global de autenticação via React Context
-- Restauração automática da sessão ao recarregar a página
+- Restauração automática da sessão
+- Envio automático do token via interceptor Axios
 
 ### Credenciais de teste
 
@@ -102,32 +140,27 @@ Senha: 41785
 
 ### ✅ Funcionalidades já implementadas
 
-- Tela de login de usuários
-- Tela de registro de usuários (mock)
-- Autenticação básica (mock)
-- Armazenamento de token e email no `localStorage`
-- Controle de autenticação global via React Context
+- Cadastro de usuários
+- Login com autenticação JWT
+- Persistência de usuários em MySQL
+- Dashboard protegido por autenticação
+- Criação de tarefas
+- Listagem de tarefas do usuário autenticado
+- Armazenamento de token JWT e email no `localStorage`
+- Controle global de autenticação via React Context
 - Rotas protegidas com React Router
 - Restauração automática da sessão ao recarregar a página
-- Dashboard acessível apenas para usuários autenticados
+- Envio automático do token JWT via interceptor Axios
 
 ---
 
 ### 🛠 Funcionalidades planejadas (próximas etapas)
 
-- Integração real com o backend Spring Boot
-- Cadastro real de usuários
-- Login real com JWT
-- CRUD de tarefas:
-  - Criar tarefas
-  - Listar tarefas
-  - Editar tarefas
-  - Excluir tarefas
+- Editar tarefas
+- Excluir tarefas
 - Marcação de tarefas como concluídas
 - Filtro e ordenação de tarefas
-- Logout com invalidação de sessão
 - Tratamento global de erros de API
-- Proteção de rotas baseada em token JWT real
 
 ## 🔐 Regras de autenticação e segurança
 
