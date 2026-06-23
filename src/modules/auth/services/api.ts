@@ -82,5 +82,12 @@ export async function criarTarefa(email: string, titulo: string): Promise<Task> 
 
   return response.data;
 }
+export async function concluirTarefa(id: number) {
+  const response = await api.put(`/tasks/${id}`);
+  return response.data;
+}
+export async function excluirTarefa(id: number) {
+  await api.delete(`/tasks/${id}`);
+}
 
 export default api;

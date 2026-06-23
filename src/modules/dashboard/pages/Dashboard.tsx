@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/context/AuthContext";
-import { listarTarefas, criarTarefa } from "../../auth/services/api";
+import {
+  listarTarefas,
+  criarTarefa,
+  concluirTarefa,
+  excluirTarefa,
+} from "../../auth/services/api";
 
 interface Task {
   id: number;
@@ -55,6 +60,32 @@ export default function Dashboard() {
     }
   }
 
+  async function handleConcluirTarefa(id: number) {
+    setError("");
+
+    try {
+      const tarefaAtualizada = await concluirTarefa(id);
+
+      setTarefas(
+        tarefas.map((tarefa) => (tarefa.id === id ? tarefaAtualizada : tarefa)),
+      );
+    } catch {
+      setError("Erro ao concluir tarefa.");
+    }
+  }
+
+  async function handleExcluirTarefa(id: number) {
+    setError("");
+
+    try {
+      await excluirTarefa(id);
+
+      setTarefas(tarefas.filter((tarefa) => tarefa.id !== id));
+    } catch {
+      setError("Erro ao excluir tarefa.");
+    }
+  }
+
   function handleLogout() {
     logout();
     navigate("/");
@@ -99,12 +130,41 @@ export default function Dashboard() {
             {tarefas.map((tarefa) => (
               <li
                 key={tarefa.id}
-                className="border rounded px-3 py-2 flex justify-between"
+                className="border rounded px-3 py-2 flex justify-between items-center"
               >
-                <span>{tarefa.titulo}</span>
-                <span className="text-sm text-gray-500">
-                  {tarefa.concluida ? "Concluída" : "Pendente"}
-                </span>
+                <div>
+                  <span
+                    className={
+                      tarefa.concluida
+                        ? "line-through text-gray-400"
+                        : "text-gray-800"
+                    }
+                  >
+                    {tarefa.titulo}
+                  </span>
+
+                  <span className="ml-3 text-sm text-gray-500">
+                    {tarefa.concluida ? "Concluída" : "Pendente"}
+                  </span>
+                </div>
+
+                <div className="flex gap-2">
+                  {!tarefa.concluida && (
+                    <button
+                      onClick={() => handleConcluirTarefa(tarefa.id)}
+                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition text-sm"
+                    >
+                      Concluir
+                    </button>
+                  )}
+
+                  <button
+                    onClick={() => handleExcluirTarefa(tarefa.id)}
+                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition text-sm"
+                  >
+                    Excluir
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
