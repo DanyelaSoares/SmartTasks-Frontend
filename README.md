@@ -21,6 +21,16 @@ O projeto foi concebido para praticar e demonstrar:
 
 ---
 
+## 📸 Screenshots
+
+### Login
+
+<img src="screenshots/login.png" width="800"/>
+
+### Dashboard
+
+## <img src="screenshots/dashboard.png" width="800"/>
+
 ## 🚀 Funcionalidades
 
 - Cadastro de usuários
@@ -33,16 +43,17 @@ O projeto foi concebido para praticar e demonstrar:
 - Criação de tarefas
 - Listagem de tarefas por usuário autenticado
 - Restauração automática da sessão
+- Conclusão de tarefas
+- Exclusão de tarefas
 
 ---
 
 ## 🛠 Funcionalidades em desenvolvimento
 
-- Concluir tarefa
-- Excluir tarefa
 - Edição de tarefas
 - Melhorias visuais
 - Casos de teste Postman
+- Filtro e ordenação de tarefas
 
 ---
 
@@ -160,11 +171,13 @@ Cadastre um novo usuário pela tela de registro e utilize as credenciais criadas
 - Persistência de usuários em MySQL
 - Dashboard protegido por autenticação
 - Criação de tarefas
-- Listagem de tarefas do usuário autenticado
-- Armazenamento de token JWT e email no `localStorage`
+- Listagem de tarefas
+- Conclusão de tarefas
+- Exclusão de tarefas
+- Armazenamento de token JWT e email no localStorage
 - Controle global de autenticação via React Context
 - Rotas protegidas com React Router
-- Restauração automática da sessão ao recarregar a página
+- Restauração automática da sessão
 - Envio automático do token JWT via interceptor Axios
 
 ---
@@ -172,10 +185,10 @@ Cadastre um novo usuário pela tela de registro e utilize as credenciais criadas
 ### 🛠 Funcionalidades planejadas (próximas etapas)
 
 - Editar tarefas
-- Excluir tarefas
-- Marcação de tarefas como concluídas
 - Filtro e ordenação de tarefas
 - Tratamento global de erros de API
+- Melhorias visuais na interface
+- Casos de teste automatizados
 
 ---
 
