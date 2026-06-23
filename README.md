@@ -29,7 +29,7 @@ O projeto foi concebido para praticar e demonstrar:
 
 ### Dashboard
 
-## <img src="screenshots/dashboard.png" width="800"/>
+<img src="screenshots/dashboard.png" width="800"/>
 
 ## 🚀 Funcionalidades
 
@@ -103,7 +103,7 @@ O script de criação do banco encontra-se em:
 
 database/smarttasks.sql
 
-Esse arquivo contém a estrutura das tabelas utilizadas pela aplicação e pode ser utilizado para recriar o banco MySQL necessário para execução do projeto.
+## Esse arquivo contém a estrutura das tabelas utilizadas pela aplicação e pode ser utilizado para recriar o banco MySQL necessário para execução do projeto.
 
 ## ⚡ Como rodar
 
