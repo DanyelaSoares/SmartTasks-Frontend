@@ -1,6 +1,15 @@
 # SmartTasks – Frontend
 
+## 📌 Stack
+
 ![Status](https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow?style=for-the-badge)
+
+- React
+- TypeScript
+- Spring Boot
+- Spring Security
+- JWT
+- MySQL
 
 Este repositório contém o **frontend** do projeto **SmartTasks**, um sistema de gerenciamento de tarefas fullstack.
 
@@ -31,44 +40,41 @@ O projeto foi concebido para praticar e demonstrar:
 
 <img src="screenshots/dashboard.png" width="800"/>
 
-## 🚀 Funcionalidades
+---
 
-- Cadastro de usuários
-- Login com JWT
-- Persistência de usuários em MySQL
-- Dashboard protegido
-- Controle global de autenticação via React Context
-- Armazenamento seguro do token JWT
-- Interceptor Axios para envio automático do token
-- Criação de tarefas
-- Listagem de tarefas por usuário autenticado
-- Restauração automática da sessão
-- Conclusão de tarefas
-- Exclusão de tarefas
+## 🏛 Arquitetura da aplicação
+
+Usuário
+│
+▼
+React + TypeScript
+│
+▼
+Axios
+│
+▼
+Spring Boot
+│
+▼
+Spring Security (JWT)
+│
+▼
+JPA / Hibernate
+│
+▼
+MySQL
 
 ---
 
 ## 🛠 Funcionalidades em desenvolvimento
 
-- Edição de tarefas
 - Melhorias visuais
 - Casos de teste Postman
 - Filtro e ordenação de tarefas
 
 ---
 
-## 🛠 Tecnologias
-
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- React Router
-- Axios
-
----
-
-## 🛠 Arquitetura
+## 🛠 Tecnologias Utilizadas
 
 Frontend:
 
@@ -92,18 +98,16 @@ Backend:
 
 ## 🔗 Backend
 
-O backend do projeto está neste repositório separado:  
-👉 https://github.com/DanyelaSoares/SmartTasks-Backend
+O backend da aplicação está disponível neste repositório:
+
+👉 github: https://github.com/DanyelaSoares/SmartTasks-Backend
+
+Nele também estão disponíveis:
+
+- Script de criação do banco de dados
+- Documentação da API
 
 ---
-
-## 🔗 Backend
-
-O backend do projeto está neste repositório:
-
-👉 https://github.com/DanyelaSoares/SmartTasks-Backend
-
-## O script de banco de dados e a documentação da API encontram-se no repositório backend.
 
 ## ⚡ Como rodar
 
@@ -127,19 +131,17 @@ O frontend estará disponível em:
 
 ## 🔐 Autenticação
 
-A aplicação utiliza autenticação baseada em JWT com:
+A aplicação utiliza autenticação baseada em JWT (JSON Web Token).
 
-- Autenticação real com JWT
-- Armazenamento de token e email no localStorage
-- Estado global de autenticação via React Context
-- Restauração automática da sessão
-- Envio automático do token via interceptor Axios
+Após o login, o backend gera um token JWT, que é armazenado no navegador e utilizado para autenticar automaticamente todas as requisições protegidas da aplicação.
 
 ---
 
 ### Credenciais de teste
 
 Cadastre um novo usuário pela tela de registro e utilize as credenciais criadas para acessar o sistema.
+
+---
 
 ## 🧭 Fluxo básico do usuário
 
@@ -168,23 +170,25 @@ Cadastre um novo usuário pela tela de registro e utilize as credenciais criadas
 
 - Cadastro de usuários
 - Login com autenticação JWT
-- Persistência de usuários em MySQL
 - Dashboard protegido por autenticação
-- Criação de tarefas
-- Listagem de tarefas
-- Conclusão de tarefas
-- Exclusão de tarefas
-- Armazenamento de token JWT e email no localStorage
+- CRUD completo de tarefas (criação, listagem, edição, conclusão e exclusão)
+- Persistência dos dados em MySQL
+
+---
+
+### 🛠 Implementação técnica
+
+- Aplicação desenvolvida em React com TypeScript
+- Consumo de API REST utilizando Axios
 - Controle global de autenticação via React Context
 - Rotas protegidas com React Router
+- Armazenamento do token JWT e email no localStorage
 - Restauração automática da sessão
-- Envio automático do token JWT via interceptor Axios
 
 ---
 
 ### 🛠 Funcionalidades planejadas (próximas etapas)
 
-- Editar tarefas
 - Filtro e ordenação de tarefas
 - Tratamento global de erros de API
 - Melhorias visuais na interface
@@ -198,8 +202,18 @@ Cadastre um novo usuário pela tela de registro e utilize as credenciais criadas
 - A autenticação é controlada por um token armazenado no `localStorage`.
 - Ao efetuar login com sucesso:
   - O token e o email do usuário são persistidos no `localStorage`.
+  - Todas as requisições autenticadas enviam automaticamente o token JWT por meio de um interceptor Axios.
   - O estado global de autenticação é atualizado.
 - Ao acessar uma rota protegida sem autenticação:
   - O usuário é automaticamente redirecionado para a tela de login.
 - Ao recarregar a página:
   - A aplicação verifica a existência de sessão no `localStorage` e restaura o login.
+
+---
+
+## 👩‍💻 Autora
+
+**Daniela Soares**
+
+- LinkedIn: https://www.linkedin.com/in/danielasoares3
+- GitHub: https://github.com/DanyelaSoares
