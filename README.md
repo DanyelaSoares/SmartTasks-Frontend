@@ -97,13 +97,13 @@ O backend do projeto está neste repositório separado:
 
 ---
 
-## 🗄 Banco de Dados
+## 🔗 Backend
 
-O script de criação do banco encontra-se em:
+O backend do projeto está neste repositório:
 
-database/smarttasks.sql
+👉 https://github.com/DanyelaSoares/SmartTasks-Backend
 
-## Esse arquivo contém a estrutura das tabelas utilizadas pela aplicação e pode ser utilizado para recriar o banco MySQL necessário para execução do projeto.
+## O script de banco de dados e a documentação da API encontram-se no repositório backend.
 
 ## ⚡ Como rodar
 

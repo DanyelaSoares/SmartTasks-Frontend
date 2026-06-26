@@ -6,6 +6,7 @@ import {
   criarTarefa,
   concluirTarefa,
   excluirTarefa,
+  editarTarefa,
 } from "../../auth/services/api";
 
 interface Task {
@@ -86,6 +87,29 @@ export default function Dashboard() {
     }
   }
 
+  async function handleEditarTarefa(id: number, tituloAtual: string) {
+    setError("");
+
+    const novoTitulo = window.prompt(
+      "Digite o novo título da tarefa:",
+      tituloAtual,
+    );
+
+    if (!novoTitulo || !novoTitulo.trim()) {
+      return;
+    }
+
+    try {
+      const tarefaAtualizada = await editarTarefa(id, novoTitulo);
+
+      setTarefas(
+        tarefas.map((tarefa) => (tarefa.id === id ? tarefaAtualizada : tarefa)),
+      );
+    } catch {
+      setError("Erro ao editar tarefa.");
+    }
+  }
+
   function handleLogout() {
     logout();
     navigate("/");
@@ -149,6 +173,13 @@ export default function Dashboard() {
                 </div>
 
                 <div className="flex gap-2">
+                  <button
+                    onClick={() => handleEditarTarefa(tarefa.id, tarefa.titulo)}
+                    className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition text-sm"
+                  >
+                    Editar
+                  </button>
+
                   {!tarefa.concluida && (
                     <button
                       onClick={() => handleConcluirTarefa(tarefa.id)}

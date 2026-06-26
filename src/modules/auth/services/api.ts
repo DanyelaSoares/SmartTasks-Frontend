@@ -89,5 +89,12 @@ export async function concluirTarefa(id: number) {
 export async function excluirTarefa(id: number) {
   await api.delete(`/tasks/${id}`);
 }
+export async function editarTarefa(id: number, titulo: string) {
+  const response = await api.put(`/tasks/${id}/titulo`, {
+    titulo,
+  });
+
+  return response.data;
+}
 
 export default api;
